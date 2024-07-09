@@ -90,24 +90,13 @@ let cantidad = Number(parseInt(prompt("Ingrese la cantidad de registros de atlet
     atletas.push(crearAtleta());
 }
 
-console.log(atletas);
+console.log("Las velocidades de los atletas en KM/H son:");
+atletas.forEach( (atleta) => {console.log(atleta.nombre), console.log(atleta.velocidadKMH()) } );
 
-for (let i = 0; i < atletas.length; i++) {
-    console.log(atletas[i].velocidadPromedio());
-    console.log(atletas[i].velocidadKMH());
-    console.log(atletas[i].velocidadMPH());
-}
+console.log("Las velocidades de los atletas en M/S son:");
+atletas.forEach( (atleta) => {console.log(atleta.nombre), console.log(atleta.velocidadPromedio()) } );
 
-// let kms;
+console.log("Las velocidades de los atletas en MPH son:");
+atletas.forEach( (atleta) => {console.log(atleta.nombre) , console.log(atleta.velocidadMPH()) } );
 
-// let tiempoTotalEnSegundos;
 
-//let distanciaMetros = kmsToMetros(kms);
-
-// let velocidadMS = calcularVelocidadMS(distanciaMetros, tiempoTotalEnSegundos);
-
-// alert("Velocidad promedio en metros por segundo: " + velocidadMS + " m/s");
-
-// alert("Velocidad promedio en kilómetros por hora: " + velocidadKMH(velocidadMS) + " km/h");
-
-// alert("Velocidad promedio en millas por hora: " + velocidadMPH(velocidadMS) + " mph")
