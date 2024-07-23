@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Running</title>
+    <title>Calculadora de velocidades</title>
+    <link rel = "stylesheet" href = "./style.css">
 </head>
 <body>
+
+    <h1>Calculadora de velocidades</h1>
+
+    <div class="contacto-form">
+        <form action="" id="formulario" class="form">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="name" id="nombre">
+
+            <label for="apellido">Apellido</label>
+            <input type="text" name="surname" id="apellido">
+
+            <label for="distancia">Distancia Recorrida (kms)</label>
+            <input type="dist" name="camino" id="recorrido">
+
+            <label for="horas">Cantidad de Horas del recorrido</label>
+            <input type="hs" name="hours" id="horas">
+
+            <label for="minutos">Cantidad de Minutos del recorrido</label>
+            <input type="min" name="mins" id="minutos">
+
+            <label for="segundos">Cantidad de Segundos del recorrido</label>
+            <input type="seg" name="seconds" id="segundos">
+
+            <input type="submit" value="Calcular velocidad" id="btn" class="boton-submit">
+
+            <label for="velocidadMPS">Velocidad (m/s)</label>
+            <input type="vms" name="velocidadms" id="velocidadms">
+
+            <label for="velocidadKMH">Velocidad (km/h)</label>
+            <input type="vkmh" name="velocidadkmh" id="velocidadkmh">
+
+            <label for="velocidadMPH">Velocidad (mph)</label>
+            <input type="vmph" name="velocidadmph" id="velocidadmph">
+
+        </form>
+    </div>
+
+
     <script src="./main.js"></script>
 </body>
 </html>
