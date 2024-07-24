@@ -1,24 +1,55 @@
-.contacto-form .form {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1rem;
-    padding: 4rem;
-}
-.contacto-form .form input {
-    display: block;
-    margin-bottom: 2rem;
-    height: 1rem;
-}
-.contacto-form .form .boton-submit {
-    background-color: #008F8C;
-    border-radius: 2rem;
-    border: none;
-    margin-top: 0.5rem;
-    width: 10rem;
-    height: 3rem;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: 1rem;
+
+  @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");    
+
+
+  html {
+      font-size: 62.5%;
+      /* 1rem = 10px*/
+    }
+    
+  
+  body{
+      background-color:aqua;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      padding: 4rem;
   }
+  h1{
+      text-align: center;
+  }
+  h2{
+      text-align: center;
+  }
+  p{
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      font-style: normal;
+      font-size: 1.3rem;
+  }
+  .contacto-form .form {
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      font-style: normal;
+      font-size: 1.3rem;
+      padding: 4rem;
+  }
+  .contacto-form .form input {
+      display: block;
+      margin-bottom: 2rem;
+      height: 2rem;
+      font-size: 1.2rem;
+  }
+  .contacto-form .form .boton-submit {
+      background-color: #008F8C;
+      border-radius: 2rem;
+      border: none;
+      margin-top: 0.5rem;
+      width: 15rem;
+      height: 3rem;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.5rem;
+    }
