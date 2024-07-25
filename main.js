@@ -1,4 +1,4 @@
-//FUNCIONES DE VALIDACION DE ENTRADA
+// Funciones de validación de entrada
 
 function pedirDistancia() {
     let kms;
@@ -60,6 +60,7 @@ class Atleta {
 
 // Código principal
 
+const atletas = [];
 const formulario = document.getElementById("formulario");
 
 formulario.addEventListener("submit", function(e) {
@@ -72,15 +73,28 @@ formulario.addEventListener("submit", function(e) {
 
     const nuevoAtleta = new Atleta(nombre, apellido, distancia, tiempo);
 
+    atletas.push(nuevoAtleta);
+
+
     console.log("Atleta creado:");
     console.log(nuevoAtleta);
 
     mostrarAtleta(nuevoAtleta);
     mostrarVelocidadesEnDOM(nuevoAtleta);
+
+    console.log("Listado de atletas:");
+    for(let i=0; i<atletas.length; i++){
+        console.log(atletas[i]);
+    }
+
+    const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
+    guardarLocal("listadoAtletas",JSON.stringify(atletas));
 });
 
+
+
 function mostrarVelocidadesEnDOM(atleta){
-    document.getElementById("velocidadPromedio").textContent = atleta.velocidadPromedio;
+    document.getElementById("velocidadPromedio").textContent = atleta.velocidadPromedio; 
     document.getElementById("velocidadKMH").textContent = atleta.velocidadKMH;
     document.getElementById("velocidadMPH").textContent = atleta.velocidadMPH;
 }
