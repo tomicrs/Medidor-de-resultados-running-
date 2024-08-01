@@ -1,36 +1,39 @@
 // Funciones de validación de entrada
 
 function pedirDistancia() {
-    let kms;
-
-    do {
-        kms = document.getElementById("recorrido").value;
+    let kms = document.getElementById("recorrido").value;
 
         if (kms <= 0 || isNaN(kms)) {
-            alert("Cantidad de kilómetros errónea, por favor ingrese un valor válido.");
-        }
+            
+            Swal.fire({
+                title: 'Cantidad de kilómetros errónea',
+                text: 'Por favor ingrese un valor válido',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+        } 
 
-    } while (kms <= 0 || isNaN(kms));
-
-    return kms * 1000; // Convierte a metros y devuelve.
+    return kms * 1000; // Convierte a metros y devuelve
 }
 
 
 function pedirTiempo() {
     let tiempoTotalEnSegundos = 0;
 
-    while (tiempoTotalEnSegundos === 0) {
-        let hs = Number(document.getElementById("horas").value);
-        let min = Number(document.getElementById("minutos").value);
-        let seg = Number(document.getElementById("segundos").value);
+    let hs = Number(document.getElementById("horas").value);
+    let min = Number(document.getElementById("minutos").value);
+    let seg = Number(document.getElementById("segundos").value);
 
-        tiempoTotalEnSegundos = (hs * 3600) + (min * 60) + seg;
+    tiempoTotalEnSegundos = (hs * 3600) + (min * 60) + seg;
 
-        if (tiempoTotalEnSegundos === 0) {
-            alert("El tiempo total no puede ser 0, reingrese los datos.");
-        }
+    if (tiempoTotalEnSegundos === 0) {
+        Swal.fire({
+            title: 'El tiempo total no puede ser 0',
+            text: 'Por favor ingrese un valor válido',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
     }
-
     return tiempoTotalEnSegundos;
 }
 
