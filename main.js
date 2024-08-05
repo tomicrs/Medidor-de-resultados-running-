@@ -92,6 +92,7 @@ formulario.addEventListener("submit", function(e) {
 
     const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
     guardarLocal("listadoAtletas",JSON.stringify(atletas));
+
 });
 
 
@@ -103,9 +104,49 @@ function mostrarVelocidadesEnDOM(atleta){
 }
 
 function mostrarAtleta(atleta) {
-    console.log("Velocidades calculadas:");
-    console.log(`Nombre: ${atleta.nombre} ${atleta.apellido}`);
-    console.log(`Velocidad en M/S: ${atleta.velocidadPromedio} m/s`);
-    console.log(`Velocidad en KM/H: ${atleta.velocidadKMH} km/h`);
-    console.log(`Velocidad en MPH: ${atleta.velocidadMPH} mph`);
+    const contenedor = document.getElementById('contenedor-atletas');
+    const atletaElement = document.createElement('div');
+
+    atletaElement.innerHTML = `
+        <h3>${atleta.nombre} ${atleta.apellido}</h3>
+        <p>Velocidad en M/S: ${atleta.velocidadPromedio} m/s</p>
+        <p>Velocidad en KM/H: ${atleta.velocidadKMH} km/h</p>
+        <p>Velocidad en MPH: ${atleta.velocidadMPH} mph</p>
+        <hr>
+    `;
+
+    contenedor.appendChild(atletaElement);
 }
+
+function cargarAtletasDesdeLocalStorage() {
+    const atletasStorage = JSON.parse(localStorage.getItem('listadoAtletas'));
+
+    if (atletasStorage) {
+        atletasStorage.forEach(atletaData => {
+            const atleta = new Atleta(
+                atletaData.nombre,
+                atletaData.apellido,
+                atletaData.distancia,
+                atletaData.tiempo
+            );
+
+            atletas.push(atleta);
+            mostrarAtleta(atleta);
+        });
+    }
+}
+
+window.onload = cargarAtletasDesdeLocalStorage;
+
+ // Función para limpiar el localStorage
+ document.getElementById("limpiarStorage").addEventListener("click", function() {
+    localStorage.removeItem("listadoAtletas");
+    document.getElementById('contenedor-atletas').innerHTML = ''; 
+    Swal.fire({
+        title: 'Almacenamiento Limpio',
+        text: 'Los datos de los atletas han sido eliminados.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    });
+});
+
