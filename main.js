@@ -1,21 +1,50 @@
-// Funciones de validación de entrada
+
+async function obtenerClima(ciudad) {
+    const apiKey = '994c3d24608a0762677e06d5bd789aa2'; 
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric`;
+
+    try {
+        const respuesta = await fetch(url);
+        if (!respuesta.ok) {
+            throw new Error('Error en la solicitud de clima');
+        }
+        const datos = await respuesta.json();
+        mostrarClima(datos);
+    } catch (error) {
+        console.error('Error al obtener el clima:', error);
+        Swal.fire({
+            title: 'Error al obtener el clima',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+}
+
+function mostrarClima(datos) {
+    const temperatura = datos.main.temp;
+    const descripcion = datos.weather[0].description;
+    const ciudad = datos.name;
+
+    document.getElementById("climaCiudad").textContent = `Ciudad: ${ciudad}`;
+    document.getElementById("climaTemperatura").textContent = `Temperatura: ${temperatura}°C`;
+    document.getElementById("climaDescripcion").textContent = `Descripción: ${descripcion}`;
+}
 
 function pedirDistancia() {
     let kms = document.getElementById("recorrido").value;
 
-        if (kms <= 0 || isNaN(kms)) {
-            
-            Swal.fire({
-                title: 'Cantidad de kilómetros errónea',
-                text: 'Por favor ingrese un valor válido',
-                icon: 'error',
-                confirmButtonText: 'Aceptar'
-            });
-        } 
+    if (kms <= 0 || isNaN(kms)) {
+        Swal.fire({
+            title: 'Cantidad de kilómetros errónea',
+            text: 'Por favor ingrese un valor válido',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
 
     return kms * 1000; // Convierte a metros y devuelve
 }
-
 
 function pedirTiempo() {
     let tiempoTotalEnSegundos = 0;
@@ -78,7 +107,6 @@ formulario.addEventListener("submit", function(e) {
 
     atletas.push(nuevoAtleta);
 
-
     console.log("Atleta creado:");
     console.log(nuevoAtleta);
 
@@ -91,11 +119,8 @@ formulario.addEventListener("submit", function(e) {
     }
 
     const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
-    guardarLocal("listadoAtletas",JSON.stringify(atletas));
-
+    guardarLocal("listadoAtletas", JSON.stringify(atletas));
 });
-
-
 
 function mostrarVelocidadesEnDOM(atleta){
     document.getElementById("velocidadPromedio").textContent = atleta.velocidadPromedio; 
@@ -136,10 +161,13 @@ function cargarAtletasDesdeLocalStorage() {
     }
 }
 
-window.onload = cargarAtletasDesdeLocalStorage;
+window.onload = function() {
+    cargarAtletasDesdeLocalStorage();
+    obtenerClima('Santa Fe'); 
+};
 
- // Función para limpiar el localStorage
- document.getElementById("limpiarStorage").addEventListener("click", function() {
+// Función utilizada para limpiar el localStorage
+document.getElementById("limpiarStorage").addEventListener("click", function() {
     localStorage.removeItem("listadoAtletas");
     document.getElementById('contenedor-atletas').innerHTML = ''; 
     Swal.fire({
@@ -149,4 +177,3 @@ window.onload = cargarAtletasDesdeLocalStorage;
         confirmButtonText: 'Aceptar'
     });
 });
-
